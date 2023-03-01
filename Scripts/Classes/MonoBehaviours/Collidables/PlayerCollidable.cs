@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerCollidable : MonoBehaviour, ICollidable
 {
     ICollisionContext collisionContext;
-    public ICollisionContext Context
+    public ICollisionContext context
     {
         get
         {

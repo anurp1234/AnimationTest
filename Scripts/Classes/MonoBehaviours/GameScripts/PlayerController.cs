@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //This needs to be decoupled into a separate input event pub sub model
-    //This is not following single responsibility yet
+    //This is not following single responsibility yet due to time constraints
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();

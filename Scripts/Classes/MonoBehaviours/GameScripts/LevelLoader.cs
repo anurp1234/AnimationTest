@@ -74,8 +74,6 @@ public class LevelLoader : MonoBehaviour
         GameObject obstaclesParentGO = new GameObject("ObstaclesParent");
         SpawnObjects(obstaclesParentGO.transform, obstaclePrefabs, gridPositions, minObstaclesCount, maxObstaclesCount);
     }
-
-    
     void SpawnObjects(Transform parent, List<GameObject> spawnPrefabs, List<GridPosition> gridPosList, int minCount, int maxCount)
     {
         int spawnCount = Random.Range(minCount, maxCount);
