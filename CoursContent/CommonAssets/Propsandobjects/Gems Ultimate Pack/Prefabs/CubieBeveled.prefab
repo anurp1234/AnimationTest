@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33000011729103744}
   - component: {fileID: 23000010941335856}
   - component: {fileID: -8106887250051997437}
+  - component: {fileID: 4375486631862772681}
+  - component: {fileID: -6262455993945401366}
   m_Layer: 0
   m_Name: CubieBeveled
   m_TagString: collectible
@@ -97,3 +99,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.63, y: 3.63, z: 3.63}
   m_Center: {x: -0.0000004172325, y: -0.0004924387, z: 0.16135931}
+--- !u!114 &4375486631862772681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011501826600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07b0fa2ba602a94b895d2f0f48612a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6262455993945401366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011501826600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058adc6d58d3c334a9a252814cd8e3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pScoreIncrement: 100

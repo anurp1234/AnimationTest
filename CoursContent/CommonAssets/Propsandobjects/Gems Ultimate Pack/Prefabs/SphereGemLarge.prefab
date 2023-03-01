@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33000011434862702}
   - component: {fileID: 23000012424984624}
   - component: {fileID: -506403219254003998}
+  - component: {fileID: -3843140000374191326}
+  - component: {fileID: 4470844052264987408}
   m_Layer: 0
   m_Name: SphereGemLarge
   m_TagString: collectible
@@ -97,3 +99,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.63, y: 3.63, z: 3.63}
   m_Center: {x: -0.0000004172325, y: -0.0004924387, z: 0.16135931}
+--- !u!114 &-3843140000374191326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010728489230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07b0fa2ba602a94b895d2f0f48612a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4470844052264987408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010728489230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058adc6d58d3c334a9a252814cd8e3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pScoreIncrement: 100

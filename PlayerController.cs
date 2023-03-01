@@ -35,27 +35,11 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isRunning", movementY > 0);
     }
 
-    void FixedUpdate()
-    {
-        if(movementY > 0)
-            controller.Move(transform.forward * speed * Time.deltaTime * movementY);
-    }
-
     private void Update()
     {
         transform.Rotate(0, movementX * Time.deltaTime * rotationSpeed, 0);
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        GameObject collidedObj = hit.gameObject;
-
-        if (collidedObj.CompareTag("collectible"))
-        {
-            GameObject.Destroy(collidedObj);
-            score += collectionPoints;
-            scoreTxt.text = score.ToString();
-        }
+        if (movementY > 0)
+            controller.Move(transform.forward * speed * Time.deltaTime * movementY);
     }
 }
 
