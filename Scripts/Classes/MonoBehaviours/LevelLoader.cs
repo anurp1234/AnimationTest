@@ -66,6 +66,7 @@ public class LevelLoader : MonoBehaviour
 
     void SpawnJewels()
     {
+        GameObject jewelsParentGO = new GameObject("JewelsParent");
         int jewelsCount = Random.Range(minGemCount, maxGemCount);
         int maxJewelIdx = gemsPrefabs.Count - 1;
         for (int i = 0; i < jewelsCount; i++)
@@ -79,12 +80,13 @@ public class LevelLoader : MonoBehaviour
             int spawnJewelIdx = Random.Range(0, maxJewelIdx);
             float spawnYPos = gemsPrefabs[spawnJewelIdx].transform.position.y;
 
-            GameObject.Instantiate(gemsPrefabs[spawnJewelIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity);
+            GameObject.Instantiate(gemsPrefabs[spawnJewelIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity, jewelsParentGO.transform);
         }
     }
 
     void SpawnObstacles()
     {
+        GameObject obstaclesParentGO = new GameObject("ObstaclesParent");
         int obstaclesCount = Random.Range(minObstaclesCount, maxObstaclesCount);
         int maxIdx = obstaclePrefabs.Count - 1;
         for (int i = 0; i < obstaclesCount; i++)
@@ -96,7 +98,7 @@ public class LevelLoader : MonoBehaviour
             float spawnZPos = pos.zPos * zScaler;
             int spawnIdx = Random.Range(0, maxIdx);
             float spawnYPos = obstaclePrefabs[spawnIdx].transform.position.y;
-            GameObject.Instantiate(obstaclePrefabs[spawnIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity);
+            GameObject.Instantiate(obstaclePrefabs[spawnIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity, obstaclesParentGO.transform);
         }
     }
 }
