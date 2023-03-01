@@ -6,7 +6,7 @@ public class CollisionProcessor : Singleton<CollisionProcessor>
     public ScoreEvent scoreEvent;
 
     List<ICollissionProcessor> collisionProcessors;
-    private void Start()
+    void Start()
     {
         collisionProcessors = new List<ICollissionProcessor>();
         collisionProcessors.Add(new PlayerCollisionProcessor());

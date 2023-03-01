@@ -31,7 +31,6 @@ public struct LoaderFactoryInfo
 }
 public class LevelFactory : MonoBehaviour
 {
-
     [SerializeField]
     string EnvironmentPath;
 
@@ -49,12 +48,10 @@ public class LevelFactory : MonoBehaviour
 
     [SerializeField]
     string gameSessionPath;
-   
     void Start()
     {
         CreateLevel(new LoaderFactoryInfo(EnvironmentPath, playerCharacterPath, collisionProcessorPath, scoreEventListenerPath, levelCreatorPath, gameSessionPath));
     }
-
     void CreateLevel(LoaderFactoryInfo info)
     {
         GameObject sceneCreatorGO = new GameObject("SceneCreator");

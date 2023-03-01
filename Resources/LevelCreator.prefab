@@ -63,4 +63,5 @@ MonoBehaviour:
   maxObstaclesCount: 20
   spawnRangeInX: 25
   spawnRangeInZ: 25
-  spawnYPos: 0.5
+  zScaler: 2
+  xScaler: 2

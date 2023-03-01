@@ -10,7 +10,6 @@ public class PlayerCollidable : MonoBehaviour, ICollidable
     {
         ICollisionContext context = GetComponent<ICollisionContext>();
         SetCollisionContext(context);
-
     }
     public ICollisionContext GetCollisionContext()
     {
@@ -22,7 +21,7 @@ public class PlayerCollidable : MonoBehaviour, ICollidable
         this.collisionContext = (PlayerCollissionContext)collisionContext;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
         ICollisionContext otherContext = hit.gameObject.GetComponent<ICollisionContext>();
         CollisionProcessor.instance.ProcessCollision(collisionContext, otherContext);

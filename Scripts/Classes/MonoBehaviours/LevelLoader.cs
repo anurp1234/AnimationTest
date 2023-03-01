@@ -23,11 +23,13 @@ public class LevelLoader : MonoBehaviour
 
     [SerializeField]
     int minGemCount = 5 ;
+
     [SerializeField]
     int maxGemCount = 10;
 
     [SerializeField]
     int minObstaclesCount = 10;
+
     [SerializeField]
     int maxObstaclesCount = 20;
 
@@ -38,11 +40,12 @@ public class LevelLoader : MonoBehaviour
     int spawnRangeInZ = 10;
 
     [SerializeField]
-    float spawnYPos = 1;
+    int zScaler = 1;
+
+    [SerializeField]
+    int xScaler = 1;
 
     List<GridPosition> gridPositions = new List<GridPosition>();
-    int zScaler = 1;
-    int xScaler = 1;
 
     void Start()
     {
@@ -72,7 +75,10 @@ public class LevelLoader : MonoBehaviour
             gridPositions.RemoveAt(gridPos);
             float spawnXPos = pos.xPos * xScaler;
             float spawnZPos = pos.zPos * zScaler;
+
             int spawnJewelIdx = Random.Range(0, maxJewelIdx);
+            float spawnYPos = gemsPrefabs[spawnJewelIdx].transform.position.y;
+
             GameObject.Instantiate(gemsPrefabs[spawnJewelIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity);
         }
     }
@@ -89,6 +95,7 @@ public class LevelLoader : MonoBehaviour
             float spawnXPos = pos.xPos * xScaler;
             float spawnZPos = pos.zPos * zScaler;
             int spawnIdx = Random.Range(0, maxIdx);
+            float spawnYPos = obstaclePrefabs[spawnIdx].transform.position.y;
             GameObject.Instantiate(obstaclePrefabs[spawnIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity);
         }
     }

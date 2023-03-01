@@ -4,20 +4,12 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
     private float movementX;
     private float movementY;
     public float speed = 3;
     public float rotationSpeed = 30;
     CharacterController controller;
     Animator animator;
-    [SerializeField]
-    TMP_Text scoreTxt;
-
-    int score;
-
-    [SerializeField]
-    int collectionPoints = 100;
 
     void Start()
     {
@@ -25,7 +17,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void OnMove(InputValue movementValue)
+    void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
@@ -33,7 +25,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isRunning", movementY > 0);
     }
 
-    private void Update()
+    void Update()
     {
         transform.Rotate(0, movementX * Time.deltaTime * rotationSpeed, 0);
         if (movementY > 0)

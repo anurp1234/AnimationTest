@@ -6,7 +6,6 @@ public class GemCollissionContext : MonoBehaviour, ICollisionContext
 {
     [SerializeField]
     int pScoreIncrement;
-
     public int scoreIncrement
     {
         get
@@ -14,5 +13,4 @@ public class GemCollissionContext : MonoBehaviour, ICollisionContext
             return pScoreIncrement;
         }
     }
-
 }

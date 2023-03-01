@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-
 public class LevelCreator: MonoBehaviour
 {
     public void LoadScene(LoaderFactoryInfo info)
