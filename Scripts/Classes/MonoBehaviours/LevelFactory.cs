@@ -59,15 +59,15 @@ public class LevelFactory : MonoBehaviour
     {
         GameObject sceneCreatorGO = new GameObject("SceneCreator");
         SceneCreator sceneCreator = sceneCreatorGO.AddComponent<SceneCreator>();
-        sceneCreator.onLoadComplete += OnLoadComplete;
+       // sceneCreator.onLoadComplete += OnLoadComplete;
         sceneCreator.LoadScene(info);
         GameObject.Destroy(sceneCreator);
     }
 
-    void OnLoadComplete(GameSession session, ScoreEventListener scoreListener, UIManager uiManager)
+   /* void OnLoadComplete(GameSession session, ScoreEventListener scoreListener, UIManager uiManager)
     {
         session.RegisterScoreListenter(scoreListener);
         uiManager.RegisterScoreListener(session);
         GameObject.Destroy(gameObject);
-    }
+    }*/
 }

@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class GameSession : MonoBehaviour
+public class GameSession : MonoBehaviour, iEventListener
 {
-    int score;
-    public event Action<int> onScoreUpdate;
+    [SerializeField]
+    ScoreEvent onScoreUpdate;
 
-    ScoreEventListener scoreListener;
-    public void RegisterScoreListenter(ScoreEventListener scoreListener)
+    [SerializeField]
+    ScoreEvent onTotalScoreUpdate;
+
+    int totalScore;
+
+    public void OnEnable()
     {
-        this.scoreListener = scoreListener;
-        scoreListener.scoreUpdatedResponseEvent += OnScoreUpdate;
+        onScoreUpdate.RegisterEventListener(this);
     }
 
-    void OnScoreUpdate(int scoreIncrement)
+    public void OnDisable()
     {
-        score += scoreIncrement;
-        if (onScoreUpdate != null)
-            onScoreUpdate.Invoke(score);
+        onScoreUpdate.UnRegisterEventListener(this);
     }
 
-    void OnDestroy()
+    public void OnEventRaised(int score)
     {
-        scoreListener.scoreUpdatedResponseEvent -= OnScoreUpdate;
+        totalScore += score;
+        onTotalScoreUpdate.Raise(totalScore);
     }
-
 }

@@ -4,26 +4,28 @@ using UnityEngine;
 using TMPro;
 
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, iEventListener
 {
     [SerializeField]
     TMP_Text scoreText;
 
-    GameSession session;
-    public void RegisterScoreListener(GameSession session)
+    [SerializeField]
+    ScoreEvent onTotalScoreUpdate;
+
+    public void OnEnable()
     {
-        this.session = session;
-        this.session.onScoreUpdate += UpdateScoreUI;
-       
+        onTotalScoreUpdate.RegisterEventListener(this);
     }
 
-    void UpdateScoreUI(int totalScore)
+    public void OnDisable()
+    {
+        onTotalScoreUpdate.UnRegisterEventListener(this);
+    }
+
+    public void OnEventRaised(int totalScore)
     {
         scoreText.text = totalScore.ToString();
     }
 
-    void OnDestroy()
-    {
-        session.onScoreUpdate -= UpdateScoreUI;
-    }
+
 }

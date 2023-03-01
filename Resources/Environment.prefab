@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 5573320063873260777}
+  onTotalScoreUpdate: {fileID: 11400000, guid: 03ee3f2d98221744c82eeab79cbfa096, type: 2}
 --- !u!1 &5573320064895633222
 GameObject:
   m_ObjectHideFlags: 0

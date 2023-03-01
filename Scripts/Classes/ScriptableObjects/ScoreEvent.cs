@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ScoreEvent : ScriptableObject
 {
-    private List<ScoreEventListener> listeners = new List<ScoreEventListener>();
+    private List<iEventListener> listeners = new List<iEventListener>();
     public void Raise(int score)
     {
         for (int i = listeners.Count - 1; i >= 0; i--)
@@ -14,11 +14,11 @@ public class ScoreEvent : ScriptableObject
         }
     }
 
-    public void RegisterEventListener(ScoreEventListener listener)
+    public void RegisterEventListener(iEventListener listener)
     {
         listeners.Add(listener);
     }
-    public void UnRegisterEventListener(ScoreEventListener listener)
+    public void UnRegisterEventListener(iEventListener listener)
     {
         listeners.Remove(listener);
     }

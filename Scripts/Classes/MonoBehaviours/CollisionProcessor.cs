@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CollisionProcessor : Singleton<CollisionProcessor>
 {
-    List<ICollissionProcessor> collisionProcessors;
     public ScoreEvent scoreEvent;
+
+    List<ICollissionProcessor> collisionProcessors;
+  
     private void Start()
     {
         collisionProcessors = new List<ICollissionProcessor>();
