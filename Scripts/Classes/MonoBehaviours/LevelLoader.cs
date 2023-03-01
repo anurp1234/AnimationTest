@@ -2,10 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct GridPosition
+{
+    public int xPos;
+    public int zPos;
+    public GridPosition(int xPos, int zPos)
+    {
+        this.xPos = xPos;
+        this.zPos = zPos;
+    }
+
+}
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField]
     List<GameObject> gemsPrefabs;
+
+    [SerializeField]
+    List<GameObject> obstaclePrefabs;
 
     [SerializeField]
     int minGemCount = 5 ;
@@ -13,38 +27,69 @@ public class LevelLoader : MonoBehaviour
     int maxGemCount = 10;
 
     [SerializeField]
-    float spawnRangeInX = 10;
+    int minObstaclesCount = 10;
+    [SerializeField]
+    int maxObstaclesCount = 20;
 
     [SerializeField]
-    float spawnRangeInZ = 10;
+    int spawnRangeInX = 10;
+
+    [SerializeField]
+    int spawnRangeInZ = 10;
 
     [SerializeField]
     float spawnYPos = 1;
-    // Start is called before the first frame update
+
+    List<GridPosition> gridPositions = new List<GridPosition>();
+    int zScaler = 1;
+    int xScaler = 1;
+
     void Start()
     {
+        PopulatePositionGrid(spawnRangeInX, spawnRangeInZ);
         SpawnJewels();
+        SpawnObstacles();
     }
-
-    // Update is called once per frame
-    void Update()
+    void PopulatePositionGrid(int maxX, int maxZ)
     {
-        
+        for (int x = 0; x < maxX; x++)
+        {
+            for (int z = 0; z < maxZ; z++)
+            {
+                gridPositions.Add(new GridPosition(x, z));
+            }
+        }
     }
 
     void SpawnJewels()
     {
         int jewelsCount = Random.Range(minGemCount, maxGemCount);
-
         int maxJewelIdx = gemsPrefabs.Count - 1;
         for (int i = 0; i < jewelsCount; i++)
         {
-            float spawnXPos = Random.Range(-spawnRangeInX, spawnRangeInX);
-            float spawnZPos = Random.Range(-spawnRangeInZ, spawnRangeInZ);
-
+            int gridPos = Random.Range(0, gridPositions.Count);
+            GridPosition pos = gridPositions[gridPos];
+            gridPositions.RemoveAt(gridPos);
+            float spawnXPos = pos.xPos * xScaler;
+            float spawnZPos = pos.zPos * zScaler;
             int spawnJewelIdx = Random.Range(0, maxJewelIdx);
-
             GameObject.Instantiate(gemsPrefabs[spawnJewelIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity);
+        }
+    }
+
+    void SpawnObstacles()
+    {
+        int obstaclesCount = Random.Range(minGemCount, maxGemCount);
+        int maxIdx = obstaclePrefabs.Count - 1;
+        for (int i = 0; i < obstaclesCount; i++)
+        {
+            int gridPos = Random.Range(0, gridPositions.Count);
+            GridPosition pos = gridPositions[gridPos];
+            gridPositions.RemoveAt(gridPos);
+            float spawnXPos = pos.xPos * xScaler;
+            float spawnZPos = pos.zPos * zScaler;
+            int spawnIdx = Random.Range(0, maxIdx);
+            GameObject.Instantiate(obstaclePrefabs[spawnIdx], new Vector3(spawnXPos, spawnYPos, spawnZPos), Quaternion.identity);
         }
     }
 }

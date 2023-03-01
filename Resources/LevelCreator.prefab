@@ -53,8 +53,14 @@ MonoBehaviour:
   - {fileID: 1000010728489230, guid: 8b40cffea67202d4bbf662b25de4c94a, type: 3}
   - {fileID: 1000010921973622, guid: af16961524284e54491133548920258b, type: 3}
   - {fileID: 1000012946874890, guid: 586acbe765df7c34385298970076297e, type: 3}
+  obstaclePrefabs:
+  - {fileID: 4397742329076885178, guid: 3d8b65cd85701d9408352631e4006092, type: 3}
+  - {fileID: 5021170347485658755, guid: a854f2dd5b2594245ab1a5849f2b20a6, type: 3}
+  - {fileID: 1689649173456769297, guid: 5bb3b277278d1cd41b3091e99a5cb690, type: 3}
   minGemCount: 10
   maxGemCount: 20
-  spawnRangeInX: 10
-  spawnRangeInZ: 10
+  minObstaclesCount: 10
+  maxObstaclesCount: 20
+  spawnRangeInX: 25
+  spawnRangeInZ: 25
   spawnYPos: 0.5

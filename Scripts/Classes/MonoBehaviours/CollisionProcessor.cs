@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ public class CollisionProcessor : Singleton<CollisionProcessor>
     public ScoreEvent scoreEvent;
 
     List<ICollissionProcessor> collisionProcessors;
-  
     private void Start()
     {
         collisionProcessors = new List<ICollissionProcessor>();

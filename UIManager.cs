@@ -26,6 +26,4 @@ public class UIManager : MonoBehaviour, iEventListener
     {
         scoreText.text = totalScore.ToString();
     }
-
-
 }

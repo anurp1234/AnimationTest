@@ -49,25 +49,17 @@ public class LevelFactory : MonoBehaviour
 
     [SerializeField]
     string gameSessionPath;
-    // Start is called before the first frame update
+   
     void Start()
     {
-        LoadLevel(new LoaderFactoryInfo(EnvironmentPath, playerCharacterPath, collisionProcessorPath, scoreEventListenerPath, levelCreatorPath, gameSessionPath));
+        CreateLevel(new LoaderFactoryInfo(EnvironmentPath, playerCharacterPath, collisionProcessorPath, scoreEventListenerPath, levelCreatorPath, gameSessionPath));
     }
 
-    void LoadLevel(LoaderFactoryInfo info)
+    void CreateLevel(LoaderFactoryInfo info)
     {
         GameObject sceneCreatorGO = new GameObject("SceneCreator");
-        SceneCreator sceneCreator = sceneCreatorGO.AddComponent<SceneCreator>();
-       // sceneCreator.onLoadComplete += OnLoadComplete;
+        LevelCreator sceneCreator = sceneCreatorGO.AddComponent<LevelCreator>();
         sceneCreator.LoadScene(info);
         GameObject.Destroy(sceneCreator);
     }
-
-   /* void OnLoadComplete(GameSession session, ScoreEventListener scoreListener, UIManager uiManager)
-    {
-        session.RegisterScoreListenter(scoreListener);
-        uiManager.RegisterScoreListener(session);
-        GameObject.Destroy(gameObject);
-    }*/
 }
