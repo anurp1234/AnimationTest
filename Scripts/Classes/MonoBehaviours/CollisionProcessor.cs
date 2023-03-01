@@ -25,7 +25,7 @@ public class CollisionProcessor : Singleton<CollisionProcessor>
 
 public interface ICollissionProcessor
 {
-   bool TryProcess(CollisionProcessor processor, ICollisionContext a, ICollisionContext b);
+    bool TryProcess(CollisionProcessor processor, ICollisionContext a, ICollisionContext b);
 }
 
 public class PlayerCollisionProcessor : ICollissionProcessor
@@ -41,6 +41,14 @@ public class PlayerCollisionProcessor : ICollissionProcessor
                 gemContext = (GemCollissionContext)other;
                 GameObject.Destroy(gemContext.gameObject);
                 processor.scoreEvent.Raise(gemContext.scoreIncrement);
+            }
+            else if (other is IgnoreCollisionContext)
+            {
+                //Nothing to be done here
+            }
+            else
+            {
+                Debug.Assert(false, "NYI");
             }
             return true;
         }

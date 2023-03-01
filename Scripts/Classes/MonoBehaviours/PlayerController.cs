@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +16,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    //This needs to be decoupled into a separate input event pub sub model
+    //This is not following single responsibility yet
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
@@ -32,4 +33,3 @@ public class PlayerController : MonoBehaviour
             controller.Move(transform.forward * speed * Time.deltaTime * movementY);
     }
 }
-

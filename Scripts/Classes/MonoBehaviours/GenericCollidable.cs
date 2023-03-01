@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GenericCollidable : MonoBehaviour, ICollidable
@@ -19,15 +17,14 @@ public class GenericCollidable : MonoBehaviour, ICollidable
 
     void Start()
     {
-        collisionContext  = GetComponent<GemCollissionContext>();
+        collisionContext  = GetComponent<ICollisionContext>();
         Debug.Assert(collisionContext != null, "Object should have collision context");
     }
 
-    private void OnCollisionEnter(Collision collisionInfo)
+    void OnCollisionEnter(Collision collisionInfo)
     {
         ICollisionContext otherContext = collisionInfo.gameObject.GetComponent<ICollisionContext>();
-        //Todo add assert that the other object has a collision context
+        Debug.Assert(otherContext != null, "Collliding object does not have a collision context");
         CollisionProcessor.instance.ProcessCollision(collisionContext, otherContext);
     }
-
 }

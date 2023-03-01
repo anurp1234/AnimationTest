@@ -1,29 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCollidable : MonoBehaviour, ICollidable
 {
-    PlayerCollissionContext collisionContext;
+    ICollisionContext collisionContext;
+    public ICollisionContext Context
+    {
+        get
+        {
+            return collisionContext;
+        }
+        set
+        {
+            collisionContext = value;
+        }
+    }
 
     void Start()
     {
-        ICollisionContext context = GetComponent<ICollisionContext>();
-        SetCollisionContext(context);
-    }
-    public ICollisionContext GetCollisionContext()
-    {
-        return collisionContext;
-    }
-
-    public void SetCollisionContext(ICollisionContext collisionContext)
-    {
-        this.collisionContext = (PlayerCollissionContext)collisionContext;
+        collisionContext = GetComponent<PlayerCollissionContext>();
+        Debug.Assert(collisionContext != null, "Object should have collision context");
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         ICollisionContext otherContext = hit.gameObject.GetComponent<ICollisionContext>();
+        Debug.Assert(otherContext != null, "Collliding object does not have a collision context");
         CollisionProcessor.instance.ProcessCollision(collisionContext, otherContext);
     }
 }

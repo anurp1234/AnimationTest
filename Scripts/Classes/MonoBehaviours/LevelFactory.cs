@@ -3,30 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 public struct LoaderFactoryInfo
 {
-    public string environmentPath;
+    public string environmentPath { get; private set; }
 
-    public string playerCharacterPath;
+    public string playerCharacterPath { get; private set; }
 
-    public string collisionProcessorPath;
+    public string collisionProcessorPath { get; private set; }
 
-    public string scoreEventListenerPath;
+    public string levelCreatorPath { get; private set; }
 
-    public string levelCreatorPath;
-
-    public string gameSessionPath;
-    public LoaderFactoryInfo(string EnvironmentPath, string playerCharacterPath, string collisionProcessorPath,string scoreEventListenerPath,string levelCreatorPath, string GameSessionPath)
+    public string gameSessionPath { get; private set; }
+    public LoaderFactoryInfo(string environmentPath, string playerCharacterPath, string collisionProcessorPath,string levelCreatorPath, string gameSessionPath)
     {
-        this.environmentPath = EnvironmentPath;
+        this.environmentPath = environmentPath;
 
         this.playerCharacterPath = playerCharacterPath;
 
         this.collisionProcessorPath = collisionProcessorPath;
 
-        this.scoreEventListenerPath = scoreEventListenerPath;
-
         this.levelCreatorPath = levelCreatorPath;
 
-        this.gameSessionPath = GameSessionPath;
+        this.gameSessionPath = gameSessionPath;
       }
 }
 public class LevelFactory : MonoBehaviour
@@ -41,22 +37,20 @@ public class LevelFactory : MonoBehaviour
     string collisionProcessorPath;
 
     [SerializeField]
-    string scoreEventListenerPath;
-
-    [SerializeField]
     string levelCreatorPath;
 
     [SerializeField]
     string gameSessionPath;
+
     void Start()
     {
-        CreateLevel(new LoaderFactoryInfo(EnvironmentPath, playerCharacterPath, collisionProcessorPath, scoreEventListenerPath, levelCreatorPath, gameSessionPath));
+        CreateLevel(new LoaderFactoryInfo(EnvironmentPath, playerCharacterPath, collisionProcessorPath, levelCreatorPath, gameSessionPath));
+        GameObject.Destroy(gameObject);
     }
     void CreateLevel(LoaderFactoryInfo info)
     {
         GameObject sceneCreatorGO = new GameObject("SceneCreator");
         SceneCreator sceneCreator = sceneCreatorGO.AddComponent<SceneCreator>();
         sceneCreator.LoadScene(info);
-        GameObject.Destroy(sceneCreator);
     }
 }
