@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//The scriptable object here acts as a mechanism for decoupling events and the event responses
 [CreateAssetMenu]
 public class ScoreEvent : ScriptableObject
 {
-    private List<iEventListener> listeners = new List<iEventListener>();
+    private List<IEventListener> listeners = new List<IEventListener>();
+
+    //Any object that needs to notify listeners of a score updation event can raise the event
+    //Listeners of the event will receive the event and respond
     public void Raise(int score)
     {
         for (int i = listeners.Count - 1; i >= 0; i--)
@@ -14,11 +18,11 @@ public class ScoreEvent : ScriptableObject
         }
     }
 
-    public void RegisterEventListener(iEventListener listener)
+    public void RegisterEventListener(IEventListener listener)
     {
         listeners.Add(listener);
     }
-    public void UnRegisterEventListener(iEventListener listener)
+    public void UnRegisterEventListener(IEventListener listener)
     {
         listeners.Remove(listener);
     }

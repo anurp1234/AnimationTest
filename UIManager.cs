@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
-public class UIManager : MonoBehaviour, iEventListener
+public class UIManager : MonoBehaviour, IEventListener
 {
     [SerializeField]
     TMP_Text scoreText;
@@ -21,7 +20,6 @@ public class UIManager : MonoBehaviour, iEventListener
     {
         onTotalScoreUpdate.UnRegisterEventListener(this);
     }
-
     public void OnEventRaised(int totalScore)
     {
         scoreText.text = totalScore.ToString();

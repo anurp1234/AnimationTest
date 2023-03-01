@@ -1,6 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * The colllision processor class is responsible for handling collisions by letting specific collision processors
+ * handle collisions, it attempts to handle collisions by letting a list of processors handle the collisions.
+ * Each processor handles collisions of a certain type of object with others. In this case it is only the player that is 
+ * primarily colliding with objects so there is one collision processor, however this can be extended further, following the 
+ * open close principle
+ */
+
 public class CollisionProcessor : Singleton<CollisionProcessor>
 {
     public ScoreEvent scoreEvent;
@@ -11,6 +19,10 @@ public class CollisionProcessor : Singleton<CollisionProcessor>
         collisionProcessors = new List<ICollissionProcessor>();
         collisionProcessors.Add(new PlayerCollisionProcessor());
     }
+    /*
+     * This method attempts to handle collisions by running them through a set of processors, if a collision is handled
+     * by any of the processors the method returns
+     */
     public void ProcessCollision(ICollisionContext a, ICollisionContext b)
     {
         int processorCount = collisionProcessors.Count;
@@ -22,7 +34,6 @@ public class CollisionProcessor : Singleton<CollisionProcessor>
         }
     }
 }
-
 public interface ICollissionProcessor
 {
     bool TryProcess(CollisionProcessor processor, ICollisionContext a, ICollisionContext b);
@@ -46,7 +57,7 @@ public class PlayerCollisionProcessor : ICollissionProcessor
             {
                 //Nothing to be done here
             }
-            else
+            else //Here we can handle collision of the player with different other objects
             {
                 Debug.Assert(false, "NYI");
             }
@@ -54,5 +65,4 @@ public class PlayerCollisionProcessor : ICollissionProcessor
         }
         return false;
     }
-
 }

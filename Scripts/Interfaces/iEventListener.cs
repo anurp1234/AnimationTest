@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface iEventListener 
+public interface IEventListener 
 {
     public void OnEventRaised(int score);
 }

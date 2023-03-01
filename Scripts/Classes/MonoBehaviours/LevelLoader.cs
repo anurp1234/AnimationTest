@@ -50,6 +50,9 @@ public class LevelLoader : MonoBehaviour
         SpawnJewels();
         SpawnObstacles();
     }
+
+    //This populates a set of x and y grid positions, which will be selected and removed at random from the list
+    //This is done to avoid collisions among the obstacles and the gems
     void PopulatePositionGrid(int maxX, int maxZ)
     {
         for (int x = 0; x < maxX; x++)
@@ -72,6 +75,7 @@ public class LevelLoader : MonoBehaviour
         SpawnObjects(obstaclesParentGO.transform, obstaclePrefabs, gridPositions, minObstaclesCount, maxObstaclesCount);
     }
 
+    
     void SpawnObjects(Transform parent, List<GameObject> spawnPrefabs, List<GridPosition> gridPosList, int minCount, int maxCount)
     {
         int spawnCount = Random.Range(minCount, maxCount);
