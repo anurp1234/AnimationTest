@@ -157,6 +157,7 @@ MonoBehaviour:
   collisionProcessorPath: CollisionProcessor
   scoreEventListenerPath: ScoreEventListener
   levelCreatorPath: LevelCreator
+  gameSessionPath: GameSession
 --- !u!4 &1925087374
 Transform:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public struct LoaderFactoryInfo
 {
-    public string EnvironmentPath;
+    public string environmentPath;
 
     public string playerCharacterPath;
 
@@ -13,9 +13,10 @@ public struct LoaderFactoryInfo
 
     public string levelCreatorPath;
 
-    public LoaderFactoryInfo(string EnvironmentPath, string playerCharacterPath, string collisionProcessorPath,string scoreEventListenerPath,string levelCreatorPath)
+    public string gameSessionPath;
+    public LoaderFactoryInfo(string EnvironmentPath, string playerCharacterPath, string collisionProcessorPath,string scoreEventListenerPath,string levelCreatorPath, string GameSessionPath)
     {
-        this.EnvironmentPath = EnvironmentPath;
+        this.environmentPath = EnvironmentPath;
 
         this.playerCharacterPath = playerCharacterPath;
 
@@ -24,6 +25,8 @@ public struct LoaderFactoryInfo
         this.scoreEventListenerPath = scoreEventListenerPath;
 
         this.levelCreatorPath = levelCreatorPath;
+
+        this.gameSessionPath = GameSessionPath;
       }
 }
 public class LevelFactory : MonoBehaviour
@@ -42,19 +45,29 @@ public class LevelFactory : MonoBehaviour
     string scoreEventListenerPath;
 
     [SerializeField]
-    string levelCreatorPath; 
+    string levelCreatorPath;
 
+    [SerializeField]
+    string gameSessionPath;
     // Start is called before the first frame update
     void Start()
     {
-        LoadLevel(new LoaderFactoryInfo(EnvironmentPath, playerCharacterPath, collisionProcessorPath, scoreEventListenerPath, levelCreatorPath));
+        LoadLevel(new LoaderFactoryInfo(EnvironmentPath, playerCharacterPath, collisionProcessorPath, scoreEventListenerPath, levelCreatorPath, gameSessionPath));
     }
 
     void LoadLevel(LoaderFactoryInfo info)
     {
-        GameObject sceneCreator = new GameObject("SceneCreator");
-        SceneCreator creator = sceneCreator.AddComponent<SceneCreator>();
-        creator.LoadScene(info);
+        GameObject sceneCreatorGO = new GameObject("SceneCreator");
+        SceneCreator sceneCreator = sceneCreatorGO.AddComponent<SceneCreator>();
+        sceneCreator.onLoadComplete += OnLoadComplete;
+        sceneCreator.LoadScene(info);
         GameObject.Destroy(sceneCreator);
+    }
+
+    void OnLoadComplete(GameSession session, ScoreEventListener scoreListener, UIManager uiManager)
+    {
+        session.RegisterScoreListenter(scoreListener);
+        uiManager.RegisterScoreListener(session);
+        GameObject.Destroy(gameObject);
     }
 }
