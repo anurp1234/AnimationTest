@@ -19,8 +19,8 @@ public class GenericCollidable : MonoBehaviour, ICollidable
 
     void Start()
     {
-        collisionContext  = GetComponent<UnityCollisionContext>();
-        Debug.Assert(collisionContext != null, "Object should have gem collision context");
+        collisionContext  = GetComponent<GemCollissionContext>();
+        Debug.Assert(collisionContext != null, "Object should have collision context");
     }
 
     private void OnCollisionEnter(Collision collisionInfo)

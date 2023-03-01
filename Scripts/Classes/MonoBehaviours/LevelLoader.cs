@@ -85,7 +85,7 @@ public class LevelLoader : MonoBehaviour
 
     void SpawnObstacles()
     {
-        int obstaclesCount = Random.Range(minGemCount, maxGemCount);
+        int obstaclesCount = Random.Range(minObstaclesCount, maxObstaclesCount);
         int maxIdx = obstaclePrefabs.Count - 1;
         for (int i = 0; i < obstaclesCount; i++)
         {

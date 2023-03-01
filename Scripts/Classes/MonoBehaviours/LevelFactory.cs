@@ -55,7 +55,7 @@ public class LevelFactory : MonoBehaviour
     void CreateLevel(LoaderFactoryInfo info)
     {
         GameObject sceneCreatorGO = new GameObject("SceneCreator");
-        LevelCreator sceneCreator = sceneCreatorGO.AddComponent<LevelCreator>();
+        SceneCreator sceneCreator = sceneCreatorGO.AddComponent<SceneCreator>();
         sceneCreator.LoadScene(info);
         GameObject.Destroy(sceneCreator);
     }
